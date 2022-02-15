@@ -17,7 +17,12 @@ const Reducers = combineReducers({
 });
 
 
-const store = createStore(Reducers, ((!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ? composeWithDevTools() : null))
+let store
+if(!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  store = createStore(Reducers, composeWithDevTools());
+} else {
+  store = createStore(Reducers);
+}
 
 export default store
 
